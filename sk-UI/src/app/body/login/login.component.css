@@ -1,0 +1,10 @@
+.align {
+    padding-left: 45%;
+}
+
+.form-div {
+    display: inline-grid;
+}
+.submitButton {
+    margin-top: 15px;
+}

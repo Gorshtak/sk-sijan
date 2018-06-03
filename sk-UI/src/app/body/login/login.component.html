@@ -1,3 +1,9 @@
-<p>
-  login works!
-</p>
+<div class="container-fluid align">
+  <form class="form-div" #f="ngForm" (ngSubmit)="submitForm(f)">
+    <label for="username"> Username: </label>
+    <input type="text" ngModel class="form-control" name="username">
+    <label for="password"> Password: </label>
+    <input type="text" ngModel class="form-control" name="password">
+    <button type="submit" class="submitButton">Login</button>
+  </form>
+</div>

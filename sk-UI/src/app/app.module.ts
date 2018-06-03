@@ -16,11 +16,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminComponent } from './body/admin/admin.component';
+import { UserComponent } from './body/user/user.component';
 
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
+  { path: "admin", component: AdminComponent },
+  { path: "user", component: UserComponent } 
 ]
 
 
@@ -31,7 +35,9 @@ const routes: Routes = [
     BodyComponent,
     FooterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

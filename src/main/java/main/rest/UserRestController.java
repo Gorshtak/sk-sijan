@@ -19,4 +19,10 @@ public class UserRestController {
         return "";
     }
 
+    @PostMapping(path="/get")
+    public @ResponseBody User getUser ( @RequestBody User user ) {
+        User returnedUser = userRepository.getUserByUsername(user.getUsername(), user.getPassword());
+        return returnedUser;
+    }
+
 }
