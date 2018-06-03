@@ -1,0 +1,19 @@
+<div class="container-fluid align">
+  <form  class="form-div" #f="ngForm"  (ngSubmit)="submitForm(f)">
+    <label for="username" > Username: </label>
+    <input type="text" ngModel class="form-control" name="username">
+    <label for="password"> Password: </label>
+    <input type="text" ngModel class="form-control" name="password">
+    <label for="FirstName"> First Name: </label>
+    <input type="text" ngModel class="form-control" name="firstName">   
+    <label for="LastName"> Last Name: </label>
+    <input type="text" ngModel class="form-control" name="lastName">
+    <label for="Email"> Email: </label>
+    <input type="text" ngModel class="form-control" name="email">
+    <label for="indexNumber"> Index Number: </label>
+    <input type="text" ngModel class="form-control" name="indexNumber">
+    <label for="Group"> Group: </label>
+    <input type="text" ngModel class="form-control" name="grupa">
+    <button type="submit" class="submitButton">Register</button>
+  </form>
+</div>

@@ -13,6 +13,7 @@ public class User {
 
     private String username;
 
+    private String password;
 
     private String firstName;
 
@@ -20,9 +21,12 @@ public class User {
 
     private String email;
 
+    private String grupa;
+
     private String indexNumber;
 
-    private String grupa;
+
+    private Integer role;
 
 
     public Integer getId() {
@@ -79,5 +83,21 @@ public class User {
 
     public void setGrupa(String grupa) {
         this.grupa = grupa;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
     }
 }
