@@ -38,6 +38,7 @@ public class RasporedRestController {
                     continue;
                 }
                 // use comma as separator
+                line = line.substring(1, line.length()-1);
                 String[] rasporedi = line.split(regex);
 
 
