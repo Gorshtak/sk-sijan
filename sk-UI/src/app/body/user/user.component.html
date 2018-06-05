@@ -1,12 +1,31 @@
 <div class="example-container mat-elevation-z8">
 
-  <div class="example-header">
-    <mat-form-field color="accent">
+  <form class="form-div" #f="ngForm" (ngSubmit)="submitForm(f)">
+    <label for="grupa"> Grupa: </label>
+    <input type="text" ngModel class="form-control" name="grupa">
+    <label for="ucionica"> Ucionica: </label>
+    <input type="text" ngModel class="form-control" name="ucionica">
+    <label for="dan"> Dan: </label>
+    <input type="text" ngModel class="form-control" name="dan">
+    <button>Filter</button>
+  </form>
+
+  <form class="form-div" #f="ngForm" (ngSubmit)="potvrdiGrupu(f)">
+    <select ngModel name="grupa">
+      <option *ngFor="let item of items">
+        {{item}}
+      </option>
+    </select>
+    <button>Potvrdi Grupu</button>
+  </form>
+
+  <div class="example-header" style="background-color: #424242">
+    <mat-form-field color="primary">
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
 
-  <table mat-table #table [dataSource]="dataSource" matSort>
+  <table mat-table #table [dataSource]="dataSource" matSort class="container-fluid">
 
     <!-- Id Column -->
     <ng-container matColumnDef="predmet">
@@ -32,7 +51,7 @@
       </td>
     </ng-container>
 
-    
+
     <!-- Email Column -->
     <ng-container matColumnDef="ucionica">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Ucionica </th>
@@ -41,7 +60,7 @@
       </td>
     </ng-container>
 
-    
+
     <!-- Email Column -->
     <ng-container matColumnDef="termin">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Termin </th>
@@ -59,8 +78,8 @@
 
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row   *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <mat-paginator color="accent" #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+  <mat-paginator color="accent" #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
   </mat-paginator>
 </div>

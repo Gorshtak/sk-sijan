@@ -4,9 +4,11 @@ package main.rest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jdk.nashorn.internal.parser.JSONParser;
+import main.entity.Filteri;
 import main.entity.Raspored;
 import main.entity.User;
 import main.repository.RasporedRepository;
+import main.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,43 @@ public class RasporedRestController {
 
     @Autowired
     private RasporedRepository rasporedRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @PostMapping(path="/updateuser")
+    public @ResponseBody User updateUser ( @RequestBody User user ) {
+        User returnedUser = userRepository.save(user);
+        return returnedUser;
+    }
+
+    @GetMapping("/getgroups")
+    public @ResponseBody String getGroups() {
+        Iterable<String> grupe =  rasporedRepository.getRasporedGroups();
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonInString = null;
+        try {
+            jsonInString = mapper.writeValueAsString(grupe);
+            return jsonInString;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    @PostMapping("/getbyfilters")
+    public @ResponseBody String getByFilters(@RequestBody Filteri filteri) {
+        Iterable<Raspored> rasporeds = rasporedRepository.getRasporedByFilters(filteri.getDan(), filteri.getUcionica(), filteri.getGrupa());
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonInString = null;
+        try {
+            jsonInString = mapper.writeValueAsString(rasporeds);
+            return jsonInString;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 
     @GetMapping("/getall")
     public @ResponseBody String getAll() {

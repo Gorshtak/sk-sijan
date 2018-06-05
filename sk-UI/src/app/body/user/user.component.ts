@@ -1,6 +1,7 @@
 import { RasporedService } from './../../services/raspored.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-user',
@@ -10,6 +11,7 @@ import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 export class UserComponent implements OnInit {
 
 
+  items: String[] = new Array();
   raspored;
   displayedColumns = ['predmet', 'nastavnik', 'tip', 'termin', 'ucionica', 'grupe'];
   dataSource;
@@ -27,7 +29,22 @@ export class UserComponent implements OnInit {
   constructor(private RasporedService: RasporedService) { }
 
   ngOnInit() {
-    console.log("raddiiiii");
+    this.RasporedService.getGroups().subscribe(
+      response => {
+        let groups = JSON.stringify(response).replace("[","").replace(new RegExp('"', 'g'),"").replace("]","");
+        let groupsSplit: String[] = groups.split(",");
+        groupsSplit.forEach( element => {
+          element = element.trim();
+          if(!this.items.includes(element))
+            this.items.push(element);
+        })
+        console.log(this.items);
+      },
+      error => {
+
+      }
+    );
+
     this.RasporedService.getAll().subscribe(
       response => {
         console.log(response);
@@ -38,6 +55,25 @@ export class UserComponent implements OnInit {
       },
       error => {
 
+      }
+    );
+  }
+
+  submitForm(f) {
+    console.log(f.value);
+    this.RasporedService.getByFilters(f.value).subscribe(
+      response => {
+        console.log(response);
+      }
+    )
+  }
+
+  potvrdiGrupu(f) {
+    let user: User = JSON.parse(sessionStorage.getItem("User"));
+    user.grupa = f.value.grupa;
+    this.RasporedService.updateUser(user).subscribe(
+      response => {
+        console.log("User updated");
       }
     )
   }
