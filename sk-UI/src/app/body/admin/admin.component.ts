@@ -19,10 +19,10 @@ export class AdminComponent implements OnInit {
     this.fileToUpload = files.item(0);
     this.fileUploadService.uploadFile(this.fileToUpload).subscribe(
       response => {
-
+        console.log(response);
       },
       error => {
-        
+        console.log(error);
       }
     )
 
