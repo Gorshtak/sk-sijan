@@ -8,16 +8,27 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './body/login/login.component';
 import { RegisterComponent } from './body/register/register.component';
 import { RouterModule, Routes } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material';
+
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminComponent } from './body/admin/admin.component';
 import { UserComponent } from './body/user/user.component';
+
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule, MatSortModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 const routes: Routes = [
@@ -41,16 +52,22 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    MatButtonToggleModule,
-    MatFormFieldModule,
-    MatOptionModule,
-    MatSelectModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(
       routes,
       { enableTracing: true } // <-- debugging purposes only
-    )
+    ),
+    MatButtonToggleModule,
+    MatSidenavModule,
+    MatTabsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDialogModule
   ],
   exports: [
     MatButtonToggleModule,

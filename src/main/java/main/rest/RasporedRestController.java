@@ -1,6 +1,9 @@
 package main.rest;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jdk.nashorn.internal.parser.JSONParser;
 import main.entity.Raspored;
 import main.entity.User;
 import main.repository.RasporedRepository;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,6 +23,20 @@ public class RasporedRestController {
 
     @Autowired
     private RasporedRepository rasporedRepository;
+
+    @GetMapping("/getall")
+    public @ResponseBody String getAll() {
+        Iterable<Raspored> rasporeds = rasporedRepository.findAll();
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonInString = null;
+        try {
+            jsonInString = mapper.writeValueAsString(rasporeds);
+            return jsonInString;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 
 
     @PostMapping("/create")

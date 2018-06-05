@@ -9,11 +9,12 @@ export class FileUploadService {
 
   constructor(private http: HttpClient) { }
 
+  url = '/raspored/create';
+
   uploadFile(fileToUpload: File): Observable<HttpEvent<{}>> {
-    const endpoint = '/raspored/create';
     const formData: FormData = new FormData();
     formData.append('file', fileToUpload);
-    const req = new HttpRequest('POST', '/raspored/create', formData, {
+    const req = new HttpRequest('POST', this.url, formData, {
       reportProgress: true,
       responseType: 'text'
     });

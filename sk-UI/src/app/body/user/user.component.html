@@ -1,3 +1,66 @@
-<p>
-  user works!
-</p>
+<div class="example-container mat-elevation-z8">
+
+  <div class="example-header">
+    <mat-form-field color="accent">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <table mat-table #table [dataSource]="dataSource" matSort>
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="predmet">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Predmet </th>
+      <td mat-cell *matCellDef="let element">
+        <div> {{element.predmet}} </div>
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="nastavnik">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nastavnik </th>
+      <td mat-cell *matCellDef="let element">
+        <div>{{element.nastavnik}} </div>
+      </td>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="tip">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Tip </th>
+      <td mat-cell *matCellDef="let element">
+        <div>{{element.tip}}</div>
+      </td>
+    </ng-container>
+
+    
+    <!-- Email Column -->
+    <ng-container matColumnDef="ucionica">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ucionica </th>
+      <td mat-cell *matCellDef="let element">
+        <div>{{element.ucionica}}</div>
+      </td>
+    </ng-container>
+
+    
+    <!-- Email Column -->
+    <ng-container matColumnDef="termin">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Termin </th>
+      <td mat-cell *matCellDef="let element">
+        <div>{{element.termin}}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="grupe">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Grupe </th>
+      <td mat-cell *matCellDef="let element">
+        <div>{{element.grupe}}</div>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row   *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator color="accent" #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>
