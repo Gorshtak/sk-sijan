@@ -1,13 +1,13 @@
 <div class="example-container mat-elevation-z8">
 
-  <form class="form-div" #f="ngForm" (ngSubmit)="submitForm(f)">
+  <form class="form-div" #form="ngForm" (ngSubmit)="submitForm(form)">
     <label for="grupa"> Grupa: </label>
     <input type="text" ngModel class="form-control" name="grupa">
     <label for="ucionica"> Ucionica: </label>
     <input type="text" ngModel class="form-control" name="ucionica">
     <label for="dan"> Dan: </label>
     <input type="text" ngModel class="form-control" name="dan">
-    <button>Filter</button>
+    <button type="submit" class="submitButton">Pretrazi</button>
   </form>
 
   <form class="form-div" #f="ngForm" (ngSubmit)="potvrdiGrupu(f)">

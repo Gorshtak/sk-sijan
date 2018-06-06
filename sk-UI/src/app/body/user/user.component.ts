@@ -31,11 +31,11 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.RasporedService.getGroups().subscribe(
       response => {
-        let groups = JSON.stringify(response).replace("[","").replace(new RegExp('"', 'g'),"").replace("]","");
+        let groups = JSON.stringify(response).replace("[", "").replace(new RegExp('"', 'g'), "").replace("]", "");
         let groupsSplit: String[] = groups.split(",");
-        groupsSplit.forEach( element => {
+        groupsSplit.forEach(element => {
           element = element.trim();
-          if(!this.items.includes(element))
+          if (!this.items.includes(element))
             this.items.push(element);
         })
         console.log(this.items);
@@ -60,6 +60,8 @@ export class UserComponent implements OnInit {
   }
 
   submitForm(f) {
+    console.log(f);
+    console.log("filteri");
     console.log(f.value);
     this.RasporedService.getByFilters(f.value).subscribe(
       response => {
